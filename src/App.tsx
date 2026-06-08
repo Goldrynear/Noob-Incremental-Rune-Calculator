@@ -90,6 +90,7 @@ export default function App() {
   const updateMode = (mode: RuneMode) => {
     setSettings((current) => ({
       ...current,
+      view: "runes",
       mode,
       selectedCategory: firstCategoryForMode(mode),
     }));
@@ -98,6 +99,7 @@ export default function App() {
   const updateSelectedCategory = (category: string) => {
     setSettings((current) => ({
       ...current,
+      view: "runes",
       selectedCategory: category,
     }));
   };
@@ -121,8 +123,15 @@ export default function App() {
   const scrollToRune = (rune: Rune) => {
     const key = `${rune.type}-${rune.name}`;
     setHighlightedKey(key);
+    setSettings((current) => ({
+      ...current,
+      view: "runes",
+      selectedCategory: rune.type,
+    }));
     window.requestAnimationFrame(() => {
-      document.getElementById(runeDomId(rune))?.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.requestAnimationFrame(() => {
+        document.getElementById(runeDomId(rune))?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
     });
   };
 

@@ -1,4 +1,5 @@
 import type { SortDirection, SortKey } from "../../lib/types";
+import { Select } from "../ui/Select";
 
 export function SortControls({
   sortKey,
@@ -13,8 +14,7 @@ export function SortControls({
 }) {
   return (
     <div className="grid gap-2 sm:grid-cols-2">
-      <select
-        className="h-9 rounded-md border border-white/10 bg-black/20 px-3 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-300/35"
+      <Select
         value={sortKey}
         onChange={(event) => onSortKey(event.target.value as SortKey)}
       >
@@ -22,15 +22,14 @@ export function SortControls({
         <option value="name">Sort by Name</option>
         <option value="chance">Sort by Chance</option>
         <option value="type">Sort by Category</option>
-      </select>
-      <select
-        className="h-9 rounded-md border border-white/10 bg-black/20 px-3 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-300/35"
+      </Select>
+      <Select
         value={sortDirection}
         onChange={(event) => onSortDirection(event.target.value as SortDirection)}
       >
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
-      </select>
+      </Select>
     </div>
   );
 }
