@@ -179,7 +179,7 @@ export default function App() {
               </div>
             </Card>
 
-            <RuneGrid runes={visibleRunes} input={appliedInput} />
+            <RuneGrid runes={visibleRunes} input={appliedInput} showCategory={selectedCategory === "All Runes"} />
           </>
         )}
       </section>

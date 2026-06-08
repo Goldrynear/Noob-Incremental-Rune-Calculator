@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BackgroundEffects } from "./BackgroundEffects";
 import { Header } from "./Header";
 import { ControlsPanel, RuneListPanel } from "./ControlsPanel";
 import type { CalculatorInput, Theme } from "../../lib/types";
@@ -30,8 +31,7 @@ export function AppShell({
 }) {
   return (
     <div className={theme === "light" ? "light-theme min-h-screen" : "min-h-screen"}>
-      <div className="site-bg-effect" aria-hidden="true" />
-      <div className="site-starfield" aria-hidden="true" />
+      <BackgroundEffects />
       <Header effectiveRps={effectiveRps} theme={theme} onThemeChange={onThemeChange} />
       <main className="relative z-10 grid gap-4 p-4 md:p-6 lg:grid-cols-[260px_minmax(0,1fr)_240px] xl:grid-cols-[280px_minmax(0,1fr)_260px]">
         <ControlsPanel

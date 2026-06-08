@@ -4,7 +4,17 @@ import type { CalculatorInput, Rune } from "../../lib/types";
 import { cx, getCategory, runeDomId } from "../../lib/utils";
 import { Badge } from "../ui/Badge";
 
-export function RuneCard({ rune, input, highlighted }: { rune: Rune; input: CalculatorInput; highlighted?: boolean }) {
+export function RuneCard({
+  rune,
+  input,
+  highlighted,
+  showCategory = true,
+}: {
+  rune: Rune;
+  input: CalculatorInput;
+  highlighted?: boolean;
+  showCategory?: boolean;
+}) {
   const category = getCategory(rune.type);
 
   return (
@@ -27,7 +37,7 @@ export function RuneCard({ rune, input, highlighted }: { rune: Rune; input: Calc
           </div>
           <p className="mt-0.5 text-xs text-slate-500">{rune.cls}</p>
         </div>
-        <Badge color={category.color}>{category.label}</Badge>
+        {showCategory && <Badge color={category.color}>{category.label}</Badge>}
       </div>
 
       <div className="mt-2 flex items-center justify-between gap-3 text-xs">

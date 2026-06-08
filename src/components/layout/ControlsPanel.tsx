@@ -45,6 +45,7 @@ export function ControlsPanel({
           <Toggle label="Rune Luck 2x" checked={input.luckPotion} onChange={(luckPotion) => onChange({ ...input, luckPotion })} />
           <Toggle label="Rune Speed 2x" checked={input.speedPotion} onChange={(speedPotion) => onChange({ ...input, speedPotion })} />
         </div>
+        <p className="mt-3 border-t border-white/[.06] pt-2 text-xs text-slate-500">Made by GoldAstro</p>
       </Card>
     </aside>
   );
