@@ -22,7 +22,7 @@ Open the local Vite URL shown in your terminal. The app does not require hosting
 npm run build
 ```
 
-## Edit Rune Config
+## Edit Rune Config.
 
 All editable calculator data lives in:
 
