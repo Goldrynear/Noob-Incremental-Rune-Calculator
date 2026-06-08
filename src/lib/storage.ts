@@ -23,6 +23,7 @@ export function defaultSettings(): StoredSettings {
 
   return {
     ...input,
+    view: "runes",
     theme: runeConfig.defaults.theme as Theme,
     mode: runeConfig.defaults.mode as RuneMode,
     selectedCategory: runeConfig.categoryOrder[0] ?? "All Runes",

@@ -24,6 +24,7 @@ export type Theme = "dark" | "light";
 export type RuneMode = "category" | "special" | "all";
 export type SortKey = "eta" | "name" | "chance" | "type";
 export type SortDirection = "asc" | "desc";
+export type ActiveView = "runes" | "custom";
 
 export type CustomRuneInput = {
   name: string;
@@ -34,6 +35,7 @@ export type CustomRuneInput = {
 };
 
 export type StoredSettings = CalculatorInput & {
+  view: ActiveView;
   theme: Theme;
   mode: RuneMode;
   search: string;

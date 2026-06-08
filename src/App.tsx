@@ -29,7 +29,6 @@ export default function App() {
   const [settings, setSettings] = useState<StoredSettings>(() => loadSettings());
   const [updated, setUpdated] = useState(false);
   const [highlightedKey, setHighlightedKey] = useState("");
-  const [customOpen, setCustomOpen] = useState(false);
 
   useEffect(() => {
     saveSettings(settings);
@@ -86,6 +85,7 @@ export default function App() {
   const updateSortKey = (sortKey: SortKey) => setSettings((current) => ({ ...current, sortKey }));
   const updateSortDirection = (sortDirection: SortDirection) => setSettings((current) => ({ ...current, sortDirection }));
   const updateCustomRune = (customRune: StoredSettings["customRune"]) => setSettings((current) => ({ ...current, customRune }));
+  const customOpen = settings.view === "custom";
 
   const updateMode = (mode: RuneMode) => {
     setSettings((current) => ({
@@ -161,7 +161,7 @@ export default function App() {
                     : "border-white/10 bg-white/[.055] text-slate-100 hover:bg-white/[.085]"
                 }`}
                 aria-pressed={customOpen}
-                onClick={() => setCustomOpen((open) => !open)}
+                onClick={() => setSettings((current) => ({ ...current, view: current.view === "custom" ? "runes" : "custom" }))}
               >
                 <Calculator size={15} />
                 Custom Rune Calc

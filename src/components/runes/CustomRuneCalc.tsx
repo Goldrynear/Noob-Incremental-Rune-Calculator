@@ -41,7 +41,7 @@ export function CustomRuneCalc({
             <label className="block text-xs font-medium text-slate-400">
               <span className="mb-1 block">Optional class</span>
               <select
-                className="h-9 w-full rounded-md border border-white/10 bg-black/20 px-3 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-300/35"
+                className="h-9 w-full rounded-md border border-white/[.09] bg-[#111923]/88 px-3 text-sm text-slate-100 shadow-inner shadow-black/20 focus:border-cyan-300/35 focus:outline-none focus:ring-2 focus:ring-cyan-300/30"
                 value={customRune.cls}
                 onChange={(event) => onChange({ ...customRune, cls: event.target.value === "Noobinial" ? "Noobinial" : "Basic" })}
               >
