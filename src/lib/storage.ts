@@ -1,4 +1,5 @@
 import { runeConfig } from "../config/runeConfig";
+import { debug } from "./debug";
 import type { CustomRuneInput, RuneMode, SortDirection, SortKey, StoredSettings, Theme } from "./types";
 
 const key = "noobIncrementalRuneCalculator.settings";
@@ -53,13 +54,18 @@ export function loadSettings(): StoredSettings {
         ...(parsed.customRune ?? {}),
       },
     };
-  } catch {
+  } catch (error) {
+    debug.warn("Could not load saved settings; using defaults.", error);
     return defaultSettings();
   }
 }
 
 export function saveSettings(settings: StoredSettings) {
-  localStorage.setItem(key, JSON.stringify(settings));
+  try {
+    localStorage.setItem(key, JSON.stringify(settings));
+  } catch (error) {
+    debug.warn("Could not save settings; continuing without persistence.", error);
+  }
 }
 
 export function isRuneMode(value: string): value is RuneMode {

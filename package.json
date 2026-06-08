@@ -8,6 +8,7 @@
     "start": "vite",
     "build": "tsc -b && vite build",
     "check": "tsc -b",
+    "diagnose": "npm run build && node scripts/diagnose-pages-build.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -22,6 +22,20 @@ Open the local Vite URL shown in your terminal. The app does not require hosting
 npm run build
 ```
 
+## GitHub Pages
+
+This app must be deployed from the built `dist` folder. The included GitHub Actions workflow builds the app and uploads `dist` to Pages.
+
+In the repository settings, set **Pages > Build and deployment > Source** to **GitHub Actions**. If Pages serves the repository root instead, the browser will request `/src/main.tsx` directly and show a 404 because Vite source files are not valid static deployment output.
+
+Before pushing, you can run:
+
+```bash
+npm run diagnose
+```
+
+To enable extra browser console diagnostics, open the app with `?debug` at the end of the URL.
+
 ## Edit Rune Config
 
 All editable calculator data lives in:

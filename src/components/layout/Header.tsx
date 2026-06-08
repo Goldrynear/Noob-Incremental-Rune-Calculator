@@ -1,12 +1,16 @@
+import { useMemo, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { runeConfig } from "../../config/runeConfig";
+import { debug } from "../../lib/debug";
 import { formatValue } from "../../lib/calculations";
 import type { Theme } from "../../lib/types";
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
 
 export function Header({ effectiveRps, theme, onThemeChange }: { effectiveRps: number; theme: Theme; onThemeChange: (theme: Theme) => void }) {
-  const logoPath = `${import.meta.env.BASE_URL}Images/Logo.png`;
+  const logoSources = useMemo(() => [`${import.meta.env.BASE_URL}Images/Logo.png`, "./Images/Logo.png", "/Images/Logo.png"], []);
+  const [logoIndex, setLogoIndex] = useState(0);
+  const logoPath = logoSources[logoIndex];
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[.08] bg-[#070b12]/90 px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,.26)] backdrop-blur-xl md:px-6">
@@ -17,6 +21,11 @@ export function Header({ effectiveRps, theme, onThemeChange }: { effectiveRps: n
             alt=""
             className="h-11 w-11 shrink-0 rounded-md object-contain"
             onError={(event) => {
+              debug.warn("Logo failed to load", logoPath);
+              if (logoIndex < logoSources.length - 1) {
+                setLogoIndex((current) => current + 1);
+                return;
+              }
               event.currentTarget.style.visibility = "hidden";
             }}
           />
