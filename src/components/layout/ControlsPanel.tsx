@@ -1,6 +1,6 @@
 import type { CalculatorInput, Rune } from "../../lib/types";
 import { runeConfig } from "../../config/runeConfig";
-import { getCategory, getCategoryIcon, runeDomId } from "../../lib/utils";
+import { getCategory, getCategoryIcon } from "../../lib/utils";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 import { Input } from "../ui/Input";
@@ -11,21 +11,11 @@ export function ControlsPanel({
   onChange,
   onUpdate,
   updated,
-  navCategories,
-  selectedCategory,
-  selectedRunes,
-  onSelectCategory,
-  onRuneClick,
 }: {
   input: CalculatorInput;
   onChange: (input: CalculatorInput) => void;
   onUpdate: () => void;
   updated: boolean;
-  navCategories: string[];
-  selectedCategory: string;
-  selectedRunes: Rune[];
-  onSelectCategory: (category: string) => void;
-  onRuneClick: (rune: Rune) => void;
 }) {
   return (
     <aside className="space-y-3 lg:sticky lg:top-24 lg:self-start">
@@ -56,45 +46,44 @@ export function ControlsPanel({
           <Toggle label="Rune Speed 2x" checked={input.speedPotion} onChange={(speedPotion) => onChange({ ...input, speedPotion })} />
         </div>
       </Card>
+    </aside>
+  );
+}
+
+export function RuneListPanel({
+  navCategories,
+  selectedCategory,
+  onSelectCategory,
+}: {
+  navCategories: string[];
+  selectedCategory: string;
+  onSelectCategory: (category: string) => void;
+}) {
+  return (
+    <aside className="space-y-3 lg:sticky lg:top-24 lg:self-start">
       <Card className="p-3">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-300">Rune List</h2>
-        <div className="mt-3 space-y-1.5">
+        <div className="mt-3 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-1">
           {navCategories.map((categoryName) => {
             const category = getCategory(categoryName);
             const Icon = getCategoryIcon(category.icon);
             const count = (runeConfig.runes as readonly Rune[]).filter((rune) => rune.type === categoryName).length;
             const active = selectedCategory === categoryName;
-            const showRuneNames = active && categoryName !== "All Runes";
             return (
-              <div key={categoryName}>
-                <button
-                  type="button"
-                  onClick={() => onSelectCategory(categoryName)}
-                  className={`flex w-full items-center justify-between gap-2 rounded-md border px-2.5 py-2 text-left text-sm transition focus:outline-none focus:ring-2 focus:ring-cyan-300/35 ${
-                    active ? "border-cyan-300/35 bg-cyan-300/12 text-cyan-50" : "border-white/10 bg-black/12 text-slate-300 hover:bg-white/[.055]"
-                  }`}
-                >
-                  <span className="flex min-w-0 items-center gap-2">
-                    <Icon size={14} style={{ color: category.color }} />
-                    <span className="truncate">{category.label}</span>
-                  </span>
-                  <span className="text-xs text-slate-500">{categoryName === "All Runes" ? runeConfig.runes.length : count}</span>
-                </button>
-                {showRuneNames && selectedRunes.length > 0 && (
-                  <div className="ml-4 mt-1 space-y-0.5 border-l border-white/10 pl-2">
-                    {selectedRunes.map((rune) => (
-                      <button
-                        key={runeDomId(rune)}
-                        type="button"
-                        onClick={() => onRuneClick(rune)}
-                        className="block w-full truncate rounded px-2 py-1 text-left text-xs text-slate-500 transition hover:bg-white/[.055] hover:text-slate-200"
-                      >
-                        {rune.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <button
+                key={categoryName}
+                type="button"
+                onClick={() => onSelectCategory(categoryName)}
+                className={`flex min-h-10 w-full items-center justify-between gap-2 rounded-md border px-2.5 py-2 text-left text-sm transition focus:outline-none focus:ring-2 focus:ring-cyan-300/35 ${
+                  active ? "border-cyan-300/35 bg-cyan-300/12 text-cyan-50" : "border-white/10 bg-black/12 text-slate-300 hover:bg-white/[.055]"
+                }`}
+              >
+                <span className="flex min-w-0 items-center gap-2">
+                  <Icon size={14} className="shrink-0" style={{ color: category.color }} />
+                  <span className="truncate">{category.label}</span>
+                </span>
+                <span className="shrink-0 text-xs text-slate-500">{categoryName === "All Runes" ? runeConfig.runes.length : count}</span>
+              </button>
             );
           })}
         </div>

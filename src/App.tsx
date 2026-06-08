@@ -11,7 +11,7 @@ import { runeConfig } from "./config/runeConfig";
 import { calculateEffectiveRPS, calculateRunePower } from "./lib/calculations";
 import { defaultSettings, loadSettings, saveSettings } from "./lib/storage";
 import type { CalculatorInput, Rune, RuneMode, SortDirection, SortKey, StoredSettings, Theme } from "./lib/types";
-import { filterRunes, getCategory, runeDomId, sortRunes } from "./lib/utils";
+import { filterRunes, getCategory, sortRunes } from "./lib/utils";
 
 const configRunes = runeConfig.runes as readonly Rune[];
 
@@ -28,7 +28,6 @@ function firstCategoryForMode(mode: RuneMode) {
 export default function App() {
   const [settings, setSettings] = useState<StoredSettings>(() => loadSettings());
   const [updated, setUpdated] = useState(false);
-  const [highlightedKey, setHighlightedKey] = useState("");
 
   useEffect(() => {
     saveSettings(settings);
@@ -39,12 +38,6 @@ export default function App() {
     const timeout = window.setTimeout(() => setUpdated(false), 1200);
     return () => window.clearTimeout(timeout);
   }, [updated]);
-
-  useEffect(() => {
-    if (!highlightedKey) return;
-    const timeout = window.setTimeout(() => setHighlightedKey(""), 1400);
-    return () => window.clearTimeout(timeout);
-  }, [highlightedKey]);
 
   const draftInput: CalculatorInput = {
     runeBulk: settings.runeBulk,
@@ -64,8 +57,6 @@ export default function App() {
     if (selectedCategory === "All Runes") return [...configRunes];
     return configRunes.filter((rune) => rune.type === selectedCategory);
   }, [selectedCategory]);
-
-  const selectedRunesForSidebar = selectedCategory === "All Runes" ? [] : categoryRunes;
 
   const visibleRunes = useMemo(() => {
     const searched = filterRunes(categoryRunes, settings.search);
@@ -120,25 +111,9 @@ export default function App() {
     setUpdated(true);
   };
 
-  const scrollToRune = (rune: Rune) => {
-    const key = `${rune.type}-${rune.name}`;
-    setHighlightedKey(key);
-    setSettings((current) => ({
-      ...current,
-      view: "runes",
-      selectedCategory: rune.type,
-    }));
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        document.getElementById(runeDomId(rune))?.scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-    });
-  };
-
   const reset = () => {
     setSettings(defaultSettings());
     setUpdated(false);
-    setHighlightedKey("");
   };
 
   return (
@@ -152,9 +127,7 @@ export default function App() {
       onThemeChange={updateTheme}
       navCategories={navCategories}
       selectedCategory={selectedCategory}
-      selectedRunes={selectedRunesForSidebar}
       onSelectCategory={updateSelectedCategory}
-      onRuneClick={scrollToRune}
     >
       <section className="min-w-0 space-y-3">
         <Card className="p-3">
@@ -206,7 +179,7 @@ export default function App() {
               </div>
             </Card>
 
-            <RuneGrid runes={visibleRunes} input={appliedInput} highlightedKey={highlightedKey} />
+            <RuneGrid runes={visibleRunes} input={appliedInput} />
           </>
         )}
       </section>
