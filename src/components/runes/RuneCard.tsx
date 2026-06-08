@@ -11,33 +11,28 @@ export function RuneCard({ rune, input, highlighted }: { rune: Rune; input: Calc
     <article
       id={runeDomId(rune)}
       className={cx(
-        "group scroll-mt-28 overflow-hidden rounded-md border border-white/10 bg-slate-950/38 p-2.5 transition hover:border-white/18 hover:bg-white/[.05]",
+        "group scroll-mt-28 overflow-hidden rounded-md border border-white/[.08] bg-[#0b111a]/78 px-3 py-2.5 transition hover:border-white/16 hover:bg-white/[.045]",
         highlighted && "border-cyan-300/70 bg-cyan-300/12 ring-2 ring-cyan-300/30",
       )}
-      style={{ borderLeftColor: rune.color, borderLeftWidth: 3 }}
+      style={{ borderLeftColor: rune.color, borderLeftWidth: 3, borderTopColor: `${rune.color}66` }}
     >
-      <div className="flex items-center justify-between gap-2">
-        <Badge color={category.color}>{category.label}</Badge>
-        {rune.premium && (
-          <span className="inline-flex h-6 items-center gap-1 rounded-md border border-amber-300/35 bg-amber-300/10 px-2 text-xs font-medium text-amber-100">
-            <Star size={12} fill="currentColor" />
-            Premium
-          </span>
-        )}
-      </div>
-
-      <div className="mt-2 flex items-end justify-between gap-3">
+      <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <h3 className="truncate text-sm font-semibold text-slate-50">{rune.name}</h3>
+          <div className="flex min-w-0 items-center gap-1.5">
+            {rune.premium && <Star className="shrink-0 text-amber-200" size={13} fill="currentColor" />}
+            <h3 className="truncate text-sm font-semibold text-slate-50">{rune.name}</h3>
+          </div>
           <p className="mt-0.5 text-xs text-slate-500">{rune.cls}</p>
         </div>
-        <div className="shrink-0 text-right text-xs">
-          <div className="text-slate-500">
-            Chance: <span className="font-medium text-slate-300">1 / {rune.raw}</span>
-          </div>
-          <div className="mt-1 text-slate-500">
-            ETA: <span className="font-semibold text-cyan-100">{calculateRuneETA(rune, input)}</span>
-          </div>
+        <Badge color={category.color}>{category.label}</Badge>
+      </div>
+
+      <div className="mt-2 flex items-center justify-between gap-3 text-xs">
+        <div className="min-w-0 text-slate-500">
+          Chance: <span className="font-medium text-slate-300">1 / {rune.raw}</span>
+        </div>
+        <div className="shrink-0 text-slate-500">
+          ETA: <span className="font-semibold text-cyan-100">{calculateRuneETA(rune, input)}</span>
         </div>
       </div>
     </article>

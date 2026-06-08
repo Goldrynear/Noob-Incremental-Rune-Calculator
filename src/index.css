@@ -7,7 +7,7 @@
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  background: #090b10;
+  background: #05080d;
 }
 
 * {
@@ -18,10 +18,33 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(34, 211, 238, 0.1), transparent 31rem),
-    linear-gradient(135deg, #080a0f 0%, #10151f 55%, #090d13 100%);
+  background: #05080d;
   color: #e5edf6;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    linear-gradient(135deg, #05080d 0%, #070b12 48%, #05080d 100%);
+  background-size: 42px 42px, 42px 42px, auto;
+}
+
+.site-bg-effect {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background:
+    radial-gradient(circle at 11% 9%, rgba(34, 211, 238, 0.12), transparent 24rem),
+    radial-gradient(circle at 88% 86%, rgba(89, 97, 255, 0.11), transparent 27rem);
+  filter: blur(8px);
+  animation: bgPulse 18s ease-in-out infinite;
 }
 
 .light-theme {
@@ -57,11 +80,28 @@ textarea {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d1118;
+  background: #070b12;
 }
 
 @layer components {
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:ring-offset-0;
+  }
+}
+
+@keyframes bgPulse {
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-bg-effect {
+    animation: none;
   }
 }

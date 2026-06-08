@@ -4,6 +4,7 @@ import { RuneGrid } from "./components/runes/RuneGrid";
 import { RuneModeTabs } from "./components/runes/RuneModeTabs";
 import { RuneSearch } from "./components/runes/RuneSearch";
 import { SortControls } from "./components/runes/SortControls";
+import { CustomRuneCalc } from "./components/runes/CustomRuneCalc";
 import { Card } from "./components/ui/Card";
 import { runeConfig } from "./config/runeConfig";
 import { calculateEffectiveRPS, calculateRunePower } from "./lib/calculations";
@@ -27,6 +28,7 @@ export default function App() {
   const [settings, setSettings] = useState<StoredSettings>(() => loadSettings());
   const [updated, setUpdated] = useState(false);
   const [highlightedKey, setHighlightedKey] = useState("");
+  const [customOpen, setCustomOpen] = useState(false);
 
   useEffect(() => {
     saveSettings(settings);
@@ -82,6 +84,7 @@ export default function App() {
   const updateSearch = (search: string) => setSettings((current) => ({ ...current, search }));
   const updateSortKey = (sortKey: SortKey) => setSettings((current) => ({ ...current, sortKey }));
   const updateSortDirection = (sortDirection: SortDirection) => setSettings((current) => ({ ...current, sortDirection }));
+  const updateCustomRune = (customRune: StoredSettings["customRune"]) => setSettings((current) => ({ ...current, customRune }));
 
   const updateMode = (mode: RuneMode) => {
     setSettings((current) => ({
@@ -149,6 +152,13 @@ export default function App() {
             <RuneSearch search={settings.search} onSearch={updateSearch} />
             <div className="flex flex-wrap items-center gap-2">
               <RuneModeTabs mode={settings.mode} onModeChange={updateMode} />
+              <CustomRuneCalc
+                open={customOpen}
+                customRune={settings.customRune}
+                input={appliedInput}
+                onOpenChange={setCustomOpen}
+                onChange={updateCustomRune}
+              />
               <button className="h-8 rounded-md px-2 text-sm text-slate-500 transition hover:bg-white/[.055] hover:text-slate-200" onClick={reset}>
                 Reset
               </button>

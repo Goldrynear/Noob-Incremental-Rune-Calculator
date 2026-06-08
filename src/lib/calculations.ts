@@ -1,5 +1,5 @@
 import { runeConfig } from "../config/runeConfig";
-import type { CalculatorInput, Rune } from "./types";
+import type { CalculatorInput, CustomRuneInput, Rune } from "./types";
 
 const sortedSuffixes = [...runeConfig.suffixes].sort((a, b) => b.sym.length - a.sym.length);
 const displaySuffixes = [...runeConfig.suffixes].sort((a, b) => b.val - a.val);
@@ -77,6 +77,27 @@ export function calculateRunePower(rune: Rune, input: CalculatorInput): number {
 export function calculateRuneETA(rune: Rune, input: CalculatorInput): string {
   const chance = parseValue(rune.raw);
   const power = calculateRunePower(rune, input);
+  if (!Number.isFinite(chance) || chance <= 0 || !Number.isFinite(power) || power <= 0) return "--";
+  return formatTime(chance / power);
+}
+
+export function calculateCustomRunePower(customRune: CustomRuneInput, input: CalculatorInput): number {
+  const bulk = parseValue(input.runeBulk) * (input.bulkPotion ? 2 : 1);
+  const baseCooldown = parseValue(input.cooldownSpeed);
+  const cooldown = customRune.ignoreLuckSpeedPotions ? baseCooldown : baseCooldown / (input.speedPotion ? 2 : 1);
+  if (!Number.isFinite(bulk) || !Number.isFinite(cooldown) || cooldown <= 0) return 0;
+
+  const rps = bulk / cooldown;
+  if (customRune.cls === "Noobinial") return rps;
+
+  const luck = parseValue(input.runeLuck) * (customRune.ignoreLuckSpeedPotions ? 1 : input.luckPotion ? 2 : 1);
+  if (!Number.isFinite(luck) || luck <= 0) return 0;
+  return rps * luck;
+}
+
+export function calculateCustomRuneETA(customRune: CustomRuneInput, input: CalculatorInput): string {
+  const chance = parseValue(customRune.raw);
+  const power = calculateCustomRunePower(customRune, input);
   if (!Number.isFinite(chance) || chance <= 0 || !Number.isFinite(power) || power <= 0) return "--";
   return formatTime(chance / power);
 }

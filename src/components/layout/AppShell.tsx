@@ -34,8 +34,9 @@ export function AppShell({
 }) {
   return (
     <div className={theme === "light" ? "light-theme min-h-screen" : "min-h-screen"}>
+      <div className="site-bg-effect" aria-hidden="true" />
       <Header effectiveRps={effectiveRps} theme={theme} onThemeChange={onThemeChange} />
-      <main className="grid gap-4 p-4 md:p-6 lg:grid-cols-[280px_1fr]">
+      <main className="relative z-10 grid gap-4 p-4 md:p-6 lg:grid-cols-[280px_1fr]">
         <ControlsPanel
           input={input}
           onChange={onInputChange}

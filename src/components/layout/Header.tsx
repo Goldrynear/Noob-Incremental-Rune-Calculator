@@ -6,10 +6,20 @@ import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
 
 export function Header({ effectiveRps, theme, onThemeChange }: { effectiveRps: number; theme: Theme; onThemeChange: (theme: Theme) => void }) {
+  const logoPath = `${import.meta.env.BASE_URL}Images/Logo.png`;
+
   return (
-    <header className="sticky top-0 z-50 flex flex-col gap-3 border-b border-white/10 bg-slate-950/82 px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,.22)] backdrop-blur-xl md:px-6 lg:flex-row lg:items-center lg:justify-between">
+    <header className="sticky top-0 z-50 flex flex-col gap-3 border-b border-white/[.08] bg-[#070b12]/88 px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,.26)] backdrop-blur-xl md:px-6 lg:flex-row lg:items-center lg:justify-between">
       <div>
         <div className="flex flex-wrap items-center gap-2">
+          <img
+            src={logoPath}
+            alt=""
+            className="h-10 w-10 shrink-0 rounded-md object-contain"
+            onError={(event) => {
+              event.currentTarget.style.visibility = "hidden";
+            }}
+          />
           <h1 className="text-lg font-semibold tracking-wide text-slate-50 md:text-xl">{runeConfig.app.title}</h1>
           {runeConfig.app.chips.map((chip) => <Badge key={chip}>{chip}</Badge>)}
         </div>

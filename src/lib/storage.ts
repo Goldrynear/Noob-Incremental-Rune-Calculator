@@ -1,7 +1,15 @@
 import { runeConfig } from "../config/runeConfig";
-import type { RuneMode, SortDirection, SortKey, StoredSettings, Theme } from "./types";
+import type { CustomRuneInput, RuneMode, SortDirection, SortKey, StoredSettings, Theme } from "./types";
 
 const key = "noobIncrementalRuneCalculator.settings";
+
+const defaultCustomRune: CustomRuneInput = {
+  name: "",
+  raw: "",
+  type: "",
+  cls: "Basic",
+  ignoreLuckSpeedPotions: false,
+};
 
 export function defaultSettings(): StoredSettings {
   const input = {
@@ -23,6 +31,7 @@ export function defaultSettings(): StoredSettings {
     lastUpdatedAt: "",
     sortKey: "eta",
     sortDirection: "asc",
+    customRune: defaultCustomRune,
   };
 }
 
@@ -37,6 +46,10 @@ export function loadSettings(): StoredSettings {
       appliedInput: {
         ...defaults.appliedInput,
         ...(parsed.appliedInput ?? {}),
+      },
+      customRune: {
+        ...defaults.customRune,
+        ...(parsed.customRune ?? {}),
       },
     };
   } catch {
