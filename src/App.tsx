@@ -4,6 +4,7 @@ import { RuneGrid } from "./components/runes/RuneGrid";
 import { RuneModeTabs } from "./components/runes/RuneModeTabs";
 import { RuneSearch } from "./components/runes/RuneSearch";
 import { SortControls } from "./components/runes/SortControls";
+import { Calculator } from "lucide-react";
 import { CustomRuneCalc } from "./components/runes/CustomRuneCalc";
 import { Card } from "./components/ui/Card";
 import { runeConfig } from "./config/runeConfig";
@@ -152,13 +153,19 @@ export default function App() {
             <RuneSearch search={settings.search} onSearch={updateSearch} />
             <div className="flex flex-wrap items-center gap-2">
               <RuneModeTabs mode={settings.mode} onModeChange={updateMode} />
-              <CustomRuneCalc
-                open={customOpen}
-                customRune={settings.customRune}
-                input={appliedInput}
-                onOpenChange={setCustomOpen}
-                onChange={updateCustomRune}
-              />
+              <button
+                type="button"
+                className={`inline-flex h-9 items-center justify-center gap-2 rounded-md border px-3 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-cyan-300/40 ${
+                  customOpen
+                    ? "border-cyan-300/55 bg-cyan-300/18 text-cyan-50"
+                    : "border-white/10 bg-white/[.055] text-slate-100 hover:bg-white/[.085]"
+                }`}
+                aria-pressed={customOpen}
+                onClick={() => setCustomOpen((open) => !open)}
+              >
+                <Calculator size={15} />
+                Custom Rune Calc
+              </button>
               <button className="h-8 rounded-md px-2 text-sm text-slate-500 transition hover:bg-white/[.055] hover:text-slate-200" onClick={reset}>
                 Reset
               </button>
@@ -166,27 +173,33 @@ export default function App() {
           </div>
         </Card>
 
-        <Card className="p-3">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="text-xl font-semibold text-slate-50">{categoryTitle}</h2>
-              <p className="mt-0.5 text-sm text-slate-500">
-                {visibleRunes.length} runes shown
-                {settings.search ? ` in ${selectedCategory === "All Runes" ? "all runes" : categoryTitle}` : ""}
-              </p>
-            </div>
-            <div className="w-full max-w-sm">
-              <SortControls
-                sortKey={settings.sortKey}
-                sortDirection={settings.sortDirection}
-                onSortKey={updateSortKey}
-                onSortDirection={updateSortDirection}
-              />
-            </div>
-          </div>
-        </Card>
+        {customOpen ? (
+          <CustomRuneCalc customRune={settings.customRune} input={appliedInput} onChange={updateCustomRune} />
+        ) : (
+          <>
+            <Card className="p-3">
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <h2 className="text-xl font-semibold text-slate-50">{categoryTitle}</h2>
+                  <p className="mt-0.5 text-sm text-slate-500">
+                    {visibleRunes.length} runes shown
+                    {settings.search ? ` in ${selectedCategory === "All Runes" ? "all runes" : categoryTitle}` : ""}
+                  </p>
+                </div>
+                <div className="w-full max-w-sm">
+                  <SortControls
+                    sortKey={settings.sortKey}
+                    sortDirection={settings.sortDirection}
+                    onSortKey={updateSortKey}
+                    onSortDirection={updateSortDirection}
+                  />
+                </div>
+              </div>
+            </Card>
 
-        <RuneGrid runes={visibleRunes} input={appliedInput} highlightedKey={highlightedKey} />
+            <RuneGrid runes={visibleRunes} input={appliedInput} highlightedKey={highlightedKey} />
+          </>
+        )}
       </section>
     </AppShell>
   );

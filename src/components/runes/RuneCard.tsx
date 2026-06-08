@@ -11,10 +11,13 @@ export function RuneCard({ rune, input, highlighted }: { rune: Rune; input: Calc
     <article
       id={runeDomId(rune)}
       className={cx(
-        "group scroll-mt-28 overflow-hidden rounded-md border border-white/[.08] bg-[#0b111a]/78 px-3 py-2.5 transition hover:border-white/16 hover:bg-white/[.045]",
+        "group scroll-mt-28 overflow-hidden rounded-md border bg-[#0b111a]/78 px-3 py-2.5 transition hover:bg-white/[.045]",
         highlighted && "border-cyan-300/70 bg-cyan-300/12 ring-2 ring-cyan-300/30",
       )}
-      style={{ borderLeftColor: rune.color, borderLeftWidth: 3, borderTopColor: `${rune.color}66` }}
+      style={{
+        borderColor: highlighted ? undefined : `${rune.color}55`,
+        boxShadow: highlighted ? undefined : `0 0 18px ${rune.color}10`,
+      }}
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
