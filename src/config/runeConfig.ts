@@ -1,14 +1,14 @@
 export const runeConfig = {
   app: {
     title: "NOOB INCREMENTAL",
-    subtitle: "Rune Calculation Engine",
-    chips: ["Premium", "RNG", "Idle"],
+    subtitle: "Rune Calculator",
+    chips: ["Runes", "Luck", "Idle"],
     version: "1.0.0",
   },
 
   defaults: {
-    runeBulk: "1.36UDe",
-    runeLuck: "450T",
+    runeBulk: "500.2b",
+    runeLuck: "200m",
     cooldownSpeed: "0.05",
     bulkPotion: true,
     luckPotion: true,
