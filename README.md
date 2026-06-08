@@ -1,6 +1,6 @@
 # Noob Incremental Rune Calculator
 
-A local-only Vite, React, TypeScript, and Tailwind CSS rune ETA calculator for Noob Incremental. It has no backend, no login, no database, and no unrelated game systems.
+A local-only Vite, React, TypeScript, and Tailwind CSS rune ETA calculator for Noob Incremental. It has no backend, no login, no database, and no unrelated game systems
 
 ## Install
 
