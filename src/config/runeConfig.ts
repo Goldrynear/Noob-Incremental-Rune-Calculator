@@ -158,12 +158,12 @@ export const runeConfig = {
   },
 
   defaults: {
-    runeBulk: "500.2b",
-    runeLuck: "200m",
+    runeBulk: "100b",
+    runeLuck: "25.5k",
     cooldownSpeed: "0.05",
-    bulkPotion: true,
-    luckPotion: true,
-    speedPotion: true,
+    bulkPotion: false,
+    luckPotion: false,
+    speedPotion: false,
     theme: "dark",
     mode: "category",
   },
