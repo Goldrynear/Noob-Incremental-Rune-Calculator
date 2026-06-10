@@ -132,7 +132,6 @@ export const runeConfig = {
     { name: "Godshard", type: "Cosmic Prism", cls: "Noobinial", raw: "100M", level: 25, color: "#d97706", premium: true },
     { name: "Ultimate Shard", type: "Cosmic Prism", cls: "Noobinial", raw: "667B", level: 25, color: "#4206d9", premium: true },
 
-
     { name: "Script", type: "Hacker Runes", cls: "Basic", raw: "1.01", level: 0, color: "#22c55e", premium: false },
     { name: "Protocol", type: "Hacker Runes", cls: "Basic", raw: "4.29", level: 0, color: "#16a34a", premium: false },
     { name: "Cipher", type: "Hacker Runes", cls: "Basic", raw: "3.43M", level: 0, color: "#06b6d4", premium: false },
@@ -140,7 +139,9 @@ export const runeConfig = {
     { name: "Kernel", type: "Hacker Runes", cls: "Basic", raw: "543T", level: 0, color: "#8b5cf6", premium: false },
     { name: "Root", type: "Hacker Runes", cls: "Basic", raw: "53Qd", level: 0, color: "#ec4899", premium: false },
     { name: "Backdoor", type: "Hacker Runes", cls: "Basic", raw: "43Qn", level: 0, color: "#f97316", premium: false },
-    { name: "Rootkit", type: "Hacker Runes", cls: "Basic", raw: "10Oc", level: 0, color: "#ef4444", premium: true },
-    { name: "Masterkey", type: "Hacker Runes", cls: "Basic", raw: "200Oc", level: 0, color: "#10b981", premium: true },
+    { name: "Rootkit", type: "Hacker Runes", cls: "Noobinial", raw: "10Oc", level: 0, color: "#ef4444", premium: true },
+    { name: "Masterkey", type: "Hacker Runes", cls: "Noobinial", raw: "200Oc", level: 0, color: "#10b981", premium: true },
+    { name: "Stuxnet", type: "Hacker Runes", cls: "Noobinial", raw: "105No", level: 0, color: "#a010b9", premium: true },
+
   ],
 } as const;
