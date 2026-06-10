@@ -31,7 +31,7 @@ export function AppShell({
 }) {
   return (
     <div className={theme === "light" ? "light-theme min-h-screen" : "min-h-screen"}>
-      <BackgroundEffects />
+      <BackgroundEffects theme={theme} />
       <Header effectiveRps={effectiveRps} theme={theme} onThemeChange={onThemeChange} />
       <main className="relative z-10 grid gap-4 p-4 md:p-6 lg:grid-cols-[260px_minmax(0,1fr)_240px] xl:grid-cols-[280px_minmax(0,1fr)_260px]">
         <ControlsPanel

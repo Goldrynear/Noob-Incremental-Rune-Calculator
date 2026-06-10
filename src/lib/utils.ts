@@ -1,4 +1,4 @@
-import { Atom, Box, Flame, Gem, type LucideIcon } from "lucide-react";
+import { Atom, Box, Flame, Gem, Terminal, type LucideIcon } from "lucide-react";
 import { runeConfig } from "../config/runeConfig";
 import { parseValue } from "./calculations";
 import type { Rune, SortDirection, SortKey } from "./types";
@@ -8,6 +8,7 @@ const icons: Record<string, LucideIcon> = {
   cube: Box,
   fire: Flame,
   gem: Gem,
+  terminal: Terminal,
 };
 
 export function cx(...classes: Array<string | false | null | undefined>) {
