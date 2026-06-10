@@ -116,7 +116,6 @@ export const runeConfig = {
     "Add Walmart parking lot",
     "Add cheeseburgers",
     "Use Update after changing stats",
-    "Premium runes are marked with a star",
   ],
 
   background: {
