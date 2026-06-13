@@ -21,7 +21,8 @@ const runeGroups = {
       { name: "Immortal", cls: "Basic", raw: "769Sp", level: 50, color: "#0d9488", premium: true },
       { name: "Shadow", cls: "Noobinial", raw: "10Sx", level: 5, color: "#6d28d9", premium: true },
       { name: "Phantom", cls: "Noobinial", raw: "10Oc", level: 20, color: "#a21caf", premium: true },
-      { name: "Atomic", cls: "Noobinial", raw: "2Qnde", level: 9999, color: "#00ffe1", premium: true },
+      { name: "Atomic", cls: "Noobinial", raw: "2QnDe", level: 9999, color: "#00ffe1", premium: true },
+      { name: "Chronos Core", cls: "Noobinial", raw: "30.8QnDe", level: 9999, color: "#95ff00", premium: true },
     ],
   },
 
@@ -40,6 +41,7 @@ const runeGroups = {
       { name: "Eclipse", cls: "Noobinial", raw: "15Sp", level: 10, color: "#c026d3", premium: true },
       { name: "Void", cls: "Noobinial", raw: "10No", level: 25, color: "#2563eb", premium: true },
       { name: "Primordial", cls: "Noobinial", raw: "25UDe", level: 25, color: "#15803d", premium: true },
+      { name: "Oblivion Sigil", cls: "Noobinial", raw: "2.35SxDe", level: 25, color: "#801515", premium: true },
     ],
   },
 
@@ -59,6 +61,8 @@ const runeGroups = {
       { name: "Abyss", cls: "Noobinial", raw: "100Sp", level: 15, color: "#b91c1c", premium: true },
       { name: "Enigma", cls: "Noobinial", raw: "10De", level: 30, color: "#65a30d", premium: true },
       { name: "Seraphim's Tear", cls: "Noobinial", raw: "400TDe", level: 6, color: "#6366f1", premium: true },
+      { name: "Aetherion", cls: "Noobinial", raw: "108SxDe", level: 6, color: "#7507f3", premium: true },
+
     ],
   },
 
