@@ -61,7 +61,7 @@ const runeGroups = {
       { name: "Abyss", cls: "Noobinial", raw: "100Sp", level: 15, color: "#b91c1c", premium: true },
       { name: "Enigma", cls: "Noobinial", raw: "10De", level: 30, color: "#65a30d", premium: true },
       { name: "Seraphim's Tear", cls: "Noobinial", raw: "400TDe", level: 6, color: "#6366f1", premium: true },
-      { name: "Aetherion", cls: "Noobinial", raw: "108SxDe", level: 6, color: "#7507f3", premium: true },
+      { name: "Aetherion", cls: "Noobinial", raw: "121SxDe", level: 6, color: "#7507f3", premium: true },
 
     ],
   },
